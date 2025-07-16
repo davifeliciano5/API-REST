@@ -1,5 +1,6 @@
 package com.example.primeiro_projeto.controllers;
 
+import com.example.primeiro_projeto.data.dto.PersonDTO;
 import com.example.primeiro_projeto.services.PersonServices;
 import com.example.primeiro_projeto.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,15 @@ public class PersonController {
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public List<Person> findAll(){
+    public List<PersonDTO> findAll(){
+
         return services.findAll();
     }
 
     @GetMapping(value = "/{id}",
      produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Person findById(@PathVariable("id") Long id){
+    public PersonDTO findById(@PathVariable("id") Long id){
        return services.findById(id);
     }
 
@@ -34,7 +36,7 @@ public class PersonController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Person create(@RequestBody Person person){
+    public PersonDTO create(@RequestBody PersonDTO person){
         return services.create(person);
     }
 
@@ -43,7 +45,7 @@ public class PersonController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Person update(@RequestBody Person person){
+    public PersonDTO update(@RequestBody PersonDTO person){
         return services.update(person);
     }
 
